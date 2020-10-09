@@ -1,0 +1,1 @@
+{"version":3,"file":"imageviewer.module.d.ts","sources":["imageviewer.module.d.ts"],"names":[],"mappings":";;AAAA;;;AACA","sourcesContent":["export declare class ImageViewerModule {\n}\n"]}

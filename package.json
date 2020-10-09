@@ -25,16 +25,26 @@
     "pdfjs-dist": "~2.0.489"
   },
   "main": "bundles/emazv72-ngx-imageviewer.umd.js",
+  "module_ivy_ngcc": "__ivy_ngcc__/fesm2015/emazv72-ngx-imageviewer.js",
   "module": "fesm2015/emazv72-ngx-imageviewer.js",
+  "es2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/emazv72-ngx-imageviewer.js",
   "es2015": "fesm2015/emazv72-ngx-imageviewer.js",
   "esm2015": "esm2015/emazv72-ngx-imageviewer.js",
+  "fesm2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/emazv72-ngx-imageviewer.js",
   "fesm2015": "fesm2015/emazv72-ngx-imageviewer.js",
   "typings": "emazv72-ngx-imageviewer.d.ts",
+  "metadata": "emazv72-ngx-imageviewer.metadata.json",
   "sideEffects": false,
   "dependencies": {
     "tslib": "^2.0.0"
   },
+  "__processed_by_ivy_ngcc__": {
+    "es2015": "10.1.5",
+    "fesm2015": "10.1.5",
+    "module": "10.1.5",
+    "typings": "10.1.5"
+  },
   "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by NGCC. This is not allowed.\\nPlease delete and rebuild the package, without compiling with NGCC, before attempting to publish.\\nNote that NGCC may have been run by importing this package into another project that is being built with Ivy enabled.\\n')\" && exit 1"
   }
 }

@@ -2,6 +2,10 @@ import { InjectionToken, ɵɵdefineInjectable, Injectable, Component, Renderer2,
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
+import * as ɵngcc0 from '@angular/core';
+import * as ɵngcc1 from '@angular/platform-browser';
+
+const _c0 = ["imageContainer"];
 class ImageViewerConfig {
 }
 function createButtonConfig(icon, tooltip, sortId = 0, show = true) {
@@ -238,11 +242,13 @@ class ImageCacheService {
         this._cache = [];
     }
 }
+ImageCacheService.ɵfac = function ImageCacheService_Factory(t) { return new (t || ImageCacheService)(); };
 ImageCacheService.ɵprov = ɵɵdefineInjectable({ factory: function ImageCacheService_Factory() { return new ImageCacheService(); }, token: ImageCacheService, providedIn: "root" });
-ImageCacheService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
 ImageCacheService.ctorParameters = () => [];
+/*@__PURE__*/ (function () { ɵngcc0.ɵsetClassMetadata(ImageCacheService, [{
+        type: Injectable,
+        args: [{ providedIn: 'root' }]
+    }], function () { return []; }, null); })();
 
 class PdfResourceLoader extends ResourceLoader {
     constructor(_imageCache) {
@@ -771,23 +777,19 @@ class ImageViewerComponent {
         return testFile(file, '\\.(pdf)|application/pdf');
     }
 }
-ImageViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-imageviewer',
-                template: `
-    <canvas #imageContainer [width]="width" [height]="height"
-      (click)="onTap($event)" (pinchin)="processTouchEvent($event)" (pinchout)="processTouchEvent($event)"
-      (panmove)="processTouchEvent($event)" (panend)="onTouchEnd()" (rotatemove)="processTouchEvent($event)"
-      (rotateend)="onTouchEnd()">
-    </canvas>
-  `,
-                styles: [`
-    :host { display: block }
-    :host canvas { margin: 0 auto; display: block }
-    [hidden] { display: none !important }
-  `]
-            },] }
-];
+ImageViewerComponent.ɵfac = function ImageViewerComponent_Factory(t) { return new (t || ImageViewerComponent)(ɵngcc0.ɵɵdirectiveInject(ɵngcc1.DomSanitizer), ɵngcc0.ɵɵdirectiveInject(ɵngcc0.Renderer2), ɵngcc0.ɵɵdirectiveInject(ImageCacheService), ɵngcc0.ɵɵdirectiveInject(IMAGEVIEWER_CONFIG)); };
+ImageViewerComponent.ɵcmp = ɵngcc0.ɵɵdefineComponent({ type: ImageViewerComponent, selectors: [["ngx-imageviewer"]], viewQuery: function ImageViewerComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵngcc0.ɵɵviewQuery(_c0, true);
+    } if (rf & 2) {
+        var _t;
+        ɵngcc0.ɵɵqueryRefresh(_t = ɵngcc0.ɵɵloadQuery()) && (ctx.canvasRef = _t.first);
+    } }, inputs: { src: "src", filetype: "filetype", width: "width", height: "height" }, decls: 2, vars: 2, consts: [[3, "width", "height", "click", "pinchin", "pinchout", "panmove", "panend", "rotatemove", "rotateend"], ["imageContainer", ""]], template: function ImageViewerComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵngcc0.ɵɵelementStart(0, "canvas", 0, 1);
+        ɵngcc0.ɵɵlistener("click", function ImageViewerComponent_Template_canvas_click_0_listener($event) { return ctx.onTap($event); })("pinchin", function ImageViewerComponent_Template_canvas_pinchin_0_listener($event) { return ctx.processTouchEvent($event); })("pinchout", function ImageViewerComponent_Template_canvas_pinchout_0_listener($event) { return ctx.processTouchEvent($event); })("panmove", function ImageViewerComponent_Template_canvas_panmove_0_listener($event) { return ctx.processTouchEvent($event); })("panend", function ImageViewerComponent_Template_canvas_panend_0_listener() { return ctx.onTouchEnd(); })("rotatemove", function ImageViewerComponent_Template_canvas_rotatemove_0_listener($event) { return ctx.processTouchEvent($event); })("rotateend", function ImageViewerComponent_Template_canvas_rotateend_0_listener() { return ctx.onTouchEnd(); });
+        ɵngcc0.ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵngcc0.ɵɵproperty("width", ctx.width)("height", ctx.height);
+    } }, styles: ["[_nghost-%COMP%] { display: block }\n    [_nghost-%COMP%]   canvas[_ngcontent-%COMP%] { margin: 0 auto; display: block }\n    [hidden][_ngcontent-%COMP%] { display: none !important }"] });
 ImageViewerComponent.ctorParameters = () => [
     { type: DomSanitizer },
     { type: Renderer2 },
@@ -801,6 +803,42 @@ ImageViewerComponent.propDecorators = {
     height: [{ type: Input, args: ['height',] }],
     canvasRef: [{ type: ViewChild, args: ['imageContainer', { static: false },] }]
 };
+/*@__PURE__*/ (function () { ɵngcc0.ɵsetClassMetadata(ImageViewerComponent, [{
+        type: Component,
+        args: [{
+                selector: 'ngx-imageviewer',
+                template: `
+    <canvas #imageContainer [width]="width" [height]="height"
+      (click)="onTap($event)" (pinchin)="processTouchEvent($event)" (pinchout)="processTouchEvent($event)"
+      (panmove)="processTouchEvent($event)" (panend)="onTouchEnd()" (rotatemove)="processTouchEvent($event)"
+      (rotateend)="onTouchEnd()">
+    </canvas>
+  `,
+                styles: [`
+    :host { display: block }
+    :host canvas { margin: 0 auto; display: block }
+    [hidden] { display: none !important }
+  `]
+            }]
+    }], function () { return [{ type: ɵngcc1.DomSanitizer }, { type: ɵngcc0.Renderer2 }, { type: ImageCacheService }, { type: ImageViewerConfig, decorators: [{
+                type: Inject,
+                args: [IMAGEVIEWER_CONFIG]
+            }] }]; }, { src: [{
+            type: Input,
+            args: ['src']
+        }], filetype: [{
+            type: Input,
+            args: ['filetype']
+        }], width: [{
+            type: Input,
+            args: ['width']
+        }], height: [{
+            type: Input,
+            args: ['height']
+        }], canvasRef: [{
+            type: ViewChild,
+            args: ['imageContainer', { static: false }]
+        }] }); })();
 function testFile(file, regexTest) {
     if (!file) {
         return false;
@@ -812,13 +850,17 @@ function testFile(file, regexTest) {
 const ɵ0 = IMAGEVIEWER_CONFIG_DEFAULT;
 class ImageViewerModule {
 }
-ImageViewerModule.decorators = [
-    { type: NgModule, args: [{
+ImageViewerModule.ɵmod = ɵngcc0.ɵɵdefineNgModule({ type: ImageViewerModule });
+ImageViewerModule.ɵinj = ɵngcc0.ɵɵdefineInjector({ factory: function ImageViewerModule_Factory(t) { return new (t || ImageViewerModule)(); }, providers: [{ provide: IMAGEVIEWER_CONFIG, useValue: ɵ0 }] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵngcc0.ɵɵsetNgModuleScope(ImageViewerModule, { declarations: [ImageViewerComponent], exports: [ImageViewerComponent] }); })();
+/*@__PURE__*/ (function () { ɵngcc0.ɵsetClassMetadata(ImageViewerModule, [{
+        type: NgModule,
+        args: [{
                 providers: [{ provide: IMAGEVIEWER_CONFIG, useValue: ɵ0 }],
                 declarations: [ImageViewerComponent],
-                exports: [ImageViewerComponent],
-            },] }
-];
+                exports: [ImageViewerComponent]
+            }]
+    }], null, null); })();
 
 /*
  * Public API Surface of ngx-imageviewer
@@ -829,4 +871,5 @@ ImageViewerModule.decorators = [
  */
 
 export { IMAGEVIEWER_CONFIG, ImageViewerComponent, ImageViewerConfig, ImageViewerModule, createButtonConfig, IMAGEVIEWER_CONFIG_DEFAULT as ɵa, ImageCacheService as ɵb };
+
 //# sourceMappingURL=emazv72-ngx-imageviewer.js.map

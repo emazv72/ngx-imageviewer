@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@angular/platform-browser')) :
-    typeof define === 'function' && define.amd ? define('@emazv72/ngx-imageviewer', ['exports', '@angular/core', 'rxjs', '@angular/platform-browser'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.emazv72 = global.emazv72 || {}, global.emazv72['ngx-imageviewer'] = {}), global.ng.core, global.rxjs, global.ng.platformBrowser));
-}(this, (function (exports, i0, rxjs, i1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('@emazv72/ngx-imageviewer', ['exports', '@angular/core', '@angular/platform-browser', 'rxjs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.emazv72 = global.emazv72 || {}, global.emazv72['ngx-imageviewer'] = {}), global.ng.core, global.ng.platformBrowser, global.rxjs));
+}(this, (function (exports, i0, platformBrowser, rxjs) { 'use strict';
 
     var ImageViewerConfig = /** @class */ (function () {
         function ImageViewerConfig() {
@@ -527,6 +527,45 @@
         return ImageResourceLoader;
     }(ResourceLoader));
 
+    var ImageCacheService = /** @class */ (function () {
+        function ImageCacheService() {
+            this._cache = [];
+        }
+        Object.defineProperty(ImageCacheService.prototype, "cache", {
+            get: function () {
+                return this._cache;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        ImageCacheService.prototype.getCache = function (url, page) {
+            return this.cache.find(function (i) { return i.url === url && i.page === page; });
+        };
+        ImageCacheService.prototype.getImage = function (url, page) {
+            var c = this.getCache(url, page);
+            return c ? c.image : null;
+        };
+        ImageCacheService.prototype.saveImage = function (url, page, image) {
+            var cache = this.getCache(url, page);
+            if (cache) {
+                cache.image = image;
+            }
+            else {
+                this.cache.push({ url: url, page: page, image: image });
+            }
+        };
+        ImageCacheService.prototype.disposeCache = function () {
+            this.cache.forEach(function (i) { return URL.revokeObjectURL(i.image.src); });
+            this._cache = [];
+        };
+        return ImageCacheService;
+    }());
+    ImageCacheService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ImageCacheService_Factory() { return new ImageCacheService(); }, token: ImageCacheService, providedIn: "root" });
+    ImageCacheService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    ImageCacheService.ctorParameters = function () { return []; };
+
     var PdfResourceLoader = /** @class */ (function (_super) {
         __extends(PdfResourceLoader, _super);
         function PdfResourceLoader(_imageCache) {
@@ -612,49 +651,6 @@
         return PdfResourceLoader;
     }(ResourceLoader));
 
-    var ImageCacheService = /** @class */ (function () {
-        function ImageCacheService() {
-            this._cache = [];
-        }
-        Object.defineProperty(ImageCacheService.prototype, "cache", {
-            get: function () {
-                return this._cache;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        ImageCacheService.prototype.getCache = function (url, page) {
-            return this.cache.find(function (i) { return i.url === url && i.page === page; });
-        };
-        ImageCacheService.prototype.getImage = function (url, page) {
-            var c = this.getCache(url, page);
-            return c ? c.image : null;
-        };
-        ImageCacheService.prototype.saveImage = function (url, page, image) {
-            var cache = this.getCache(url, page);
-            if (cache) {
-                cache.image = image;
-            }
-            else {
-                this.cache.push({ url: url, page: page, image: image });
-            }
-        };
-        ImageCacheService.prototype.disposeCache = function () {
-            this.cache.forEach(function (i) { return URL.revokeObjectURL(i.image.src); });
-            this._cache = [];
-        };
-        return ImageCacheService;
-    }());
-    ImageCacheService.ɵfac = function ImageCacheService_Factory(t) { return new (t || ImageCacheService)(); };
-    ImageCacheService.ɵprov = i0.ɵɵdefineInjectable({ token: ImageCacheService, factory: ImageCacheService.ɵfac, providedIn: 'root' });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(ImageCacheService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return []; }, null);
-    })();
-
-    var _c0 = ["imageContainer"];
     var MIN_TOOLTIP_WIDTH_SPACE = 500;
     var ImageViewerComponent = /** @class */ (function () {
         //#endregion
@@ -1121,55 +1117,26 @@
         };
         return ImageViewerComponent;
     }());
-    ImageViewerComponent.ɵfac = function ImageViewerComponent_Factory(t) { return new (t || ImageViewerComponent)(i0.ɵɵdirectiveInject(i1.DomSanitizer), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(ImageCacheService), i0.ɵɵdirectiveInject(IMAGEVIEWER_CONFIG)); };
-    ImageViewerComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ImageViewerComponent, selectors: [["ngx-imageviewer"]], viewQuery: function ImageViewerComponent_Query(rf, ctx) {
-            if (rf & 1) {
-                i0.ɵɵviewQuery(_c0, true);
-            }
-            if (rf & 2) {
-                var _t;
-                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.canvasRef = _t.first);
-            }
-        }, inputs: { src: "src", filetype: "filetype", width: "width", height: "height" }, decls: 2, vars: 2, consts: [[3, "width", "height", "click", "pinchin", "pinchout", "panmove", "panend", "rotatemove", "rotateend"], ["imageContainer", ""]], template: function ImageViewerComponent_Template(rf, ctx) {
-            if (rf & 1) {
-                i0.ɵɵelementStart(0, "canvas", 0, 1);
-                i0.ɵɵlistener("click", function ImageViewerComponent_Template_canvas_click_0_listener($event) { return ctx.onTap($event); })("pinchin", function ImageViewerComponent_Template_canvas_pinchin_0_listener($event) { return ctx.processTouchEvent($event); })("pinchout", function ImageViewerComponent_Template_canvas_pinchout_0_listener($event) { return ctx.processTouchEvent($event); })("panmove", function ImageViewerComponent_Template_canvas_panmove_0_listener($event) { return ctx.processTouchEvent($event); })("panend", function ImageViewerComponent_Template_canvas_panend_0_listener() { return ctx.onTouchEnd(); })("rotatemove", function ImageViewerComponent_Template_canvas_rotatemove_0_listener($event) { return ctx.processTouchEvent($event); })("rotateend", function ImageViewerComponent_Template_canvas_rotateend_0_listener() { return ctx.onTouchEnd(); });
-                i0.ɵɵelementEnd();
-            }
-            if (rf & 2) {
-                i0.ɵɵproperty("width", ctx.width)("height", ctx.height);
-            }
-        }, styles: ["[_nghost-%COMP%] { display: block }\n    [_nghost-%COMP%]   canvas[_ngcontent-%COMP%] { margin: 0 auto; display: block }\n    [hidden][_ngcontent-%COMP%] { display: none !important }"] });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(ImageViewerComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'ngx-imageviewer',
-                        template: "\n    <canvas #imageContainer [width]=\"width\" [height]=\"height\"\n      (click)=\"onTap($event)\" (pinchin)=\"processTouchEvent($event)\" (pinchout)=\"processTouchEvent($event)\"\n      (panmove)=\"processTouchEvent($event)\" (panend)=\"onTouchEnd()\" (rotatemove)=\"processTouchEvent($event)\"\n      (rotateend)=\"onTouchEnd()\">\n    </canvas>\n  ",
-                        styles: ["\n    :host { display: block }\n    :host canvas { margin: 0 auto; display: block }\n    [hidden] { display: none !important }\n  "]
-                    }]
-            }], function () {
-            return [{ type: i1.DomSanitizer }, { type: i0.Renderer2 }, { type: ImageCacheService }, { type: ImageViewerConfig, decorators: [{
-                            type: i0.Inject,
-                            args: [IMAGEVIEWER_CONFIG]
-                        }] }];
-        }, { src: [{
-                    type: i0.Input,
-                    args: ['src']
-                }], filetype: [{
-                    type: i0.Input,
-                    args: ['filetype']
-                }], width: [{
-                    type: i0.Input,
-                    args: ['width']
-                }], height: [{
-                    type: i0.Input,
-                    args: ['height']
-                }], canvasRef: [{
-                    type: i0.ViewChild,
-                    args: ['imageContainer', { static: false }]
-                }] });
-    })();
+    ImageViewerComponent.decorators = [
+        { type: i0.Component, args: [{
+                    selector: 'ngx-imageviewer',
+                    template: "\n    <canvas #imageContainer [width]=\"width\" [height]=\"height\"\n      (click)=\"onTap($event)\" (pinchin)=\"processTouchEvent($event)\" (pinchout)=\"processTouchEvent($event)\"\n      (panmove)=\"processTouchEvent($event)\" (panend)=\"onTouchEnd()\" (rotatemove)=\"processTouchEvent($event)\"\n      (rotateend)=\"onTouchEnd()\">\n    </canvas>\n  ",
+                    styles: ["\n    :host { display: block }\n    :host canvas { margin: 0 auto; display: block }\n    [hidden] { display: none !important }\n  "]
+                },] }
+    ];
+    ImageViewerComponent.ctorParameters = function () { return [
+        { type: platformBrowser.DomSanitizer },
+        { type: i0.Renderer2 },
+        { type: ImageCacheService },
+        { type: ImageViewerConfig, decorators: [{ type: i0.Inject, args: [IMAGEVIEWER_CONFIG,] }] }
+    ]; };
+    ImageViewerComponent.propDecorators = {
+        src: [{ type: i0.Input, args: ['src',] }],
+        filetype: [{ type: i0.Input, args: ['filetype',] }],
+        width: [{ type: i0.Input, args: ['width',] }],
+        height: [{ type: i0.Input, args: ['height',] }],
+        canvasRef: [{ type: i0.ViewChild, args: ['imageContainer', { static: false },] }]
+    };
     function testFile(file, regexTest) {
         if (!file) {
             return false;
@@ -1178,24 +1145,19 @@
         return name.toLowerCase().match(regexTest) !== null;
     }
 
+    var ɵ0 = IMAGEVIEWER_CONFIG_DEFAULT;
     var ImageViewerModule = /** @class */ (function () {
         function ImageViewerModule() {
         }
         return ImageViewerModule;
     }());
-    ImageViewerModule.ɵmod = i0.ɵɵdefineNgModule({ type: ImageViewerModule });
-    ImageViewerModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ImageViewerModule_Factory(t) { return new (t || ImageViewerModule)(); }, providers: [{ provide: IMAGEVIEWER_CONFIG, useValue: IMAGEVIEWER_CONFIG_DEFAULT }] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ImageViewerModule, { declarations: [ImageViewerComponent], exports: [ImageViewerComponent] }); })();
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(ImageViewerModule, [{
-                type: i0.NgModule,
-                args: [{
-                        providers: [{ provide: IMAGEVIEWER_CONFIG, useValue: IMAGEVIEWER_CONFIG_DEFAULT }],
-                        declarations: [ImageViewerComponent],
-                        exports: [ImageViewerComponent],
-                    }]
-            }], null, null);
-    })();
+    ImageViewerModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    providers: [{ provide: IMAGEVIEWER_CONFIG, useValue: ɵ0 }],
+                    declarations: [ImageViewerComponent],
+                    exports: [ImageViewerComponent],
+                },] }
+    ];
 
     /*
      * Public API Surface of ngx-imageviewer
@@ -1210,6 +1172,8 @@
     exports.ImageViewerConfig = ImageViewerConfig;
     exports.ImageViewerModule = ImageViewerModule;
     exports.createButtonConfig = createButtonConfig;
+    exports.ɵa = IMAGEVIEWER_CONFIG_DEFAULT;
+    exports.ɵb = ImageCacheService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
