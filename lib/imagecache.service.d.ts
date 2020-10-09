@@ -1,4 +1,3 @@
-import * as ɵngcc0 from '@angular/core';
 export interface CacheDef {
     url: string;
     page: number;
@@ -12,7 +11,4 @@ export declare class ImageCacheService {
     getImage(url: string, page: number): any;
     saveImage(url: string, page: number, image: any): void;
     disposeCache(): void;
-    static ɵfac: ɵngcc0.ɵɵFactoryDef<ImageCacheService, never>;
 }
-
-//# sourceMappingURL=imagecache.service.d.ts.map

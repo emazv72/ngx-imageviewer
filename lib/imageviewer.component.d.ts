@@ -2,7 +2,6 @@ import { AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageViewerConfig } from './imageviewer.config';
 import { ImageCacheService } from './imagecache.service';
-import * as ɵngcc0 from '@angular/core';
 export declare class ImageViewerComponent implements AfterViewInit, OnDestroy {
     private _sanitizer;
     private _renderer;
@@ -67,8 +66,4 @@ export declare class ImageViewerComponent implements AfterViewInit, OnDestroy {
     private getUIElement;
     private isImage;
     private isPdf;
-    static ɵfac: ɵngcc0.ɵɵFactoryDef<ImageViewerComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<ImageViewerComponent, "ngx-imageviewer", never, { "src": "src"; "filetype": "filetype"; "width": "width"; "height": "height"; }, {}, never, never>;
 }
-
-//# sourceMappingURL=imageviewer.component.d.ts.map
