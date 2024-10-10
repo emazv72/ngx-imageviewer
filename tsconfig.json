@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "typeRoots": [
       "node_modules/@types"
@@ -21,6 +21,7 @@
       "@emazv72/ngx-imageviewer": [
         "dist/ngx-imageviewer"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   }
 }
