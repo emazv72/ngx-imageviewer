@@ -1,4 +1,4 @@
-# Angular >= 10 - Canvas Image/PDF Viewer
+# Angular 16 - Canvas Image/PDF Viewer
 
 [![travis build](https://travis-ci.org/emazv72/ngx-imageviewer.svg?branch=master)](https://travis-ci.org/emazv72/ngx-imageviewer)
 [![Greenkeeper badge](https://badges.greenkeeper.io/emazv72/ngx-imageviewer.svg)](https://greenkeeper.io/)

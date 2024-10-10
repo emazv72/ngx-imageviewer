@@ -9,8 +9,7 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
-        }
+        "@schematics/angular:component": {}
       },
       "architect": {
         "build": {

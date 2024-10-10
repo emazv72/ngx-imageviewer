@@ -2,7 +2,7 @@
 
 @import './styles/app.scss';
 
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 
 // always include only once per project
 @include mat-core();
