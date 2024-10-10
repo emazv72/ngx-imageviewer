@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,7 +27,6 @@ import { ImageViewerModule } from '@emazv72/ngx-imageviewer';
     CommonModule,
     HttpClientModule,
     FormsModule,
-    FlexLayoutModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
