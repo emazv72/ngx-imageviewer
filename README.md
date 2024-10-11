@@ -62,7 +62,7 @@ Optionaly, you can provide the fields `width` and `height`. If you omit those va
 
 ## Add PDF Support
 
-To add PDF rendering support, you must first include `pdfjs` by running `yarn add pdfjs-dist@2.5.207` and add its reference in your `angular.json` file, like below:
+To add PDF rendering support, you must first include `pdfjs` by running `yarn add pdfjs-dist@3.11.174` and add its reference in your `angular.json` file, like below:
 
 ```json
 {
