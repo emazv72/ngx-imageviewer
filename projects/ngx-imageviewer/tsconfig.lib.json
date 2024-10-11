@@ -18,6 +18,7 @@
     ]
   },
   "angularCompilerOptions": {
+    "compilationMode": "partial",
     "annotateForClosureCompiler": false,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
