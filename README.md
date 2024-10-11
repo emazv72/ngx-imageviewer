@@ -8,12 +8,12 @@
 
 Forked from https://github.com/hallysonh/ngx-imageviewer
 
-This project generate a image/pdf viewer using canvas.
+This project generates a image/pdf viewer using canvas.
 
 ## Features
 
 - Configurable
-- Resizeble component
+- Resizeable component
 - Supports JPEG, PNG, GIF and **PDF**
 - Support File Objects
 - Avaliable actions:
